@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./sui-processing.js"></script>
+</head>
+<body>
+    <button id="success">成功</button>
+    <button id="error">失败</button>
+    <button id="loading">加载中</button>
+</body>
+</html>
+<script>
+    var sp = new SuiProcessing()
+    document.getElementById("success").addEventListener('click', function() {
+        sp.show()
+    })
+    document.getElementById("loading").addEventListener('click', function() {
+        sp.show().toSuccess({
+            text: '处理中'
+        }).hide({
+            hideDelay: 0
+        })
+    })
+    document.getElementById("error").addEventListener('click', function() {
+        sp.show()
+        sp.toError({
+            text: '失败'
+        })
+    })
+</script>
