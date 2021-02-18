@@ -34,17 +34,23 @@
     })
     // 使用toSuccess()方法将窗口状态切换为成功，并显示成功动画，然后调用hide()方法将窗口关闭
     document.getElementById("success").addEventListener('click', function() {
-        sp.show().toSuccess({
-            text: '处理中'
-        }).hide({
-            hideDelay: 1000
-        })
+        // 支持链式操作
+        // 先将状态置为loading
+        sp.show().toLoading()
+        setTimeout(function() {
+            sp.toSuccess({
+                text: '成功！'
+            }).hide()
+        }, 1000)
     })
     // 使用toError()方法将窗口状态切换为失败，并显示失败动画，然后调用hide()方法将窗口关闭
     document.getElementById("error").addEventListener('click', function() {
-        sp.show().toError({
-            text: '失败'
-        }).hide()
+        sp.show().toLoading()
+        setTimeout(function() {
+            sp.toError({
+                text: '失败！'
+            }).hide()
+        }, 1000)
     })
 </script>
 ```
@@ -85,6 +91,9 @@ sp.hide({
     hideDelay: 1000
 })
 ```
+
+### 支持链式写法，如下
+`sp.show().toLoading().hide()`
 
 ### 切换为loading状态，并显示转圈动画
 `toLoading()`

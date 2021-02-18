@@ -7,27 +7,30 @@
     <script src="./sui-processing.js"></script>
 </head>
 <body>
-    <button id="success">成功</button>
-    <button id="error">失败</button>
-    <button id="loading">加载中</button>
+    <button id="show">显示窗口</button>
+    <button id="success">加载中，一段时间后置为成功</button>
+    <button id="error">加载中，一段时间后置为失败</button>
 </body>
 </html>
 <script>
     var sp = new SuiProcessing()
-    document.getElementById("success").addEventListener('click', function() {
-        sp.show()
+    document.getElementById("show").addEventListener('click', function() {
+        sp.show().hide()
     })
-    document.getElementById("loading").addEventListener('click', function() {
-        sp.show().toSuccess({
-            text: '处理中'
-        }).hide({
-            hideDelay: 0
-        })
+    document.getElementById("success").addEventListener('click', function() {
+        sp.show().toLoading()
+        setTimeout(function() {
+            sp.toSuccess({
+                text: '成功！'
+            }).hide()
+        }, 1000)
     })
     document.getElementById("error").addEventListener('click', function() {
-        sp.show()
-        sp.toError({
-            text: '失败'
-        })
+        sp.show().toLoading()
+        setTimeout(function() {
+            sp.toError({
+                text: '失败！'
+            }).hide()
+        }, 1000)
     })
 </script>

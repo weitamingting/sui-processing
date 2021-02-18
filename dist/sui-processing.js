@@ -222,7 +222,7 @@ var SuiProcessing = function () {
         value: function toLoading(data) {
             this.wrapperDom.classList.remove('sp-status-success', 'sp-status-error', 'sp-status-warning');
             this.wrapperDom.classList.add('sp-status-loading');
-            this.textDom.innerText = data.text ? data.text : '处理中，请稍后...';
+            this.textDom.innerText = data && data.text ? data.text : '处理中，请稍后...';
 
             return this;
         }
@@ -243,7 +243,7 @@ var SuiProcessing = function () {
             this.circleWrapDom.classList.remove('sp-error');
             this.circleWrapDom.classList.add('sp-success');
 
-            this.textDom.innerText = data.text ? data.text : '处理成功！';
+            this.textDom.innerText = data && data.text ? data.text : '处理成功！';
 
             return this;
         }
@@ -264,7 +264,7 @@ var SuiProcessing = function () {
             this.circleWrapDom.classList.remove('sp-success');
             this.circleWrapDom.classList.add('sp-error');
 
-            this.textDom.innerText = data.text ? data.text : '处理失败！';
+            this.textDom.innerText = data && data.text ? data.text : '处理失败！';
 
             return this;
         }
